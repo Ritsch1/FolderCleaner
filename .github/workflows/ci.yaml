@@ -1,6 +1,6 @@
 name: ci_config
 on:
-  push:
+  pull-request:
     branches: [master]
     
   jobs:
@@ -24,7 +24,7 @@ on:
         - run: poetry install
 
         - name: Run static code analysis
-        - run: poetry run flake8
+        - run: poetry run flake8 --max-line-length 80
 
         - name: Run Testsn in verbose mode and report code coverage
         - run: poetry run pytest -v --cov
