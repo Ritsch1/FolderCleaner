@@ -1,0 +1,30 @@
+name: ci_config
+on:
+  push:
+    branches: [master]
+    
+  jobs:
+    build:
+      runs-on:ubuntu-latest
+      strategy:
+      matrix:
+        python-version: ["3.9", "3.10"]
+
+      steps:
+        - name: Checkout repository
+        - actions/checkout@v3
+
+        - name: Install python version ${{matrix.python-version}}
+        - actions/setup-python@v4
+
+        - name: Install poetry
+        - snok/install-poetry@v1
+
+        - name: Install dependencies
+        - run: poetry install
+
+        - name: Run static code analysis
+        - run: poetry run flake8
+
+        - name: Run Testsn in verbose mode and report code coverage
+        - run: poetry run pytest -v --cov
