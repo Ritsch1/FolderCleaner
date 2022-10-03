@@ -8,6 +8,7 @@ authors = ["plesz <r.plesz@yahoo.de>"]
 python = "^3.9"
 argparse = "^1.4.0"
 flake8 = "^5.0.4"
+black = "^22.8.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
